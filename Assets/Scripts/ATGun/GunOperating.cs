@@ -11,6 +11,7 @@ public class GunOperating : MonoBehaviour
     public GameObject insertableShell;
     public GameObject heShell, apShell;
     public GameObject muzzle, muzzleFlash;
+    public Animator barrelAnim;
 
     public float breechBlockHandleRot = 175;
     public float insertableShellDistance = -0.7f;
@@ -45,9 +46,10 @@ public class GunOperating : MonoBehaviour
     {
         gunLoadedAndAiming = false;
         StartCoroutine(NextViewWaiter());
-        CameraShaker.Instance.ShakeOnce(8, 12, 0, 1.5f);
+        CameraShaker.Instance.ShakeOnce(10, 15, 0, 1.5f);
         Sounds.Spawn(transform.position, transform, SoundLibrary.GetClip("atGunFire"), 0, true, 1);
         var mf = Instantiate(muzzleFlash, muzzle.transform.position, muzzle.transform.rotation, null);
+        barrelAnim.SetTrigger("Fire");
         Destroy(mf, 5);
     }
 

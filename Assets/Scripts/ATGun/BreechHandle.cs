@@ -13,6 +13,8 @@ public class BreechHandle : MonoBehaviour
     GunOperating go;
     PlayerLookPoints plp;
 
+    GameObject tempEmptyShell;
+
     private void Start()
     {
         go = GunOperating.instance;
@@ -35,12 +37,15 @@ public class BreechHandle : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
 
                 //Animate shell ejection
-                var es = Instantiate(emptyShell, shellSpitOutSpot.position, shellSpitOutSpot.rotation, null);
-                Rigidbody esRb = es.GetComponent<Rigidbody>();
-                esRb.AddForce(-es.transform.forward * 10, ForceMode.Impulse);
+                
+                Rigidbody esRb = tempEmptyShell.GetComponent<Rigidbody>();
+                esRb.isKinematic = false;
+                esRb.AddForce(-tempEmptyShell.transform.forward * 10, ForceMode.Impulse);
+                tempEmptyShell.GetComponent<Case>().enabled = true;
                 StartCoroutine(ApplyTorqueToESDelayed(esRb));
                 Sounds.Spawn(transform.position, transform, SoundLibrary.GetClip("openLeverFull"));
                 StartCoroutine(NextViewWaiter());
+                tempEmptyShell = null;
             }
             go.breechBlockHandleRot = value;
         }
@@ -69,6 +74,12 @@ public class BreechHandle : MonoBehaviour
         if (plp.currentView != 1)
             return;
         Sounds.Spawn(transform.position, transform, SoundLibrary.GetClip("openLeverHalf"));
+        if (tempEmptyShell == null)
+        {
+            tempEmptyShell = Instantiate(emptyShell, shellSpitOutSpot.position, shellSpitOutSpot.rotation, null);            
+            tempEmptyShell.GetComponent<Rigidbody>().isKinematic = true;
+            tempEmptyShell.GetComponent<Case>().enabled = false;
+        }
         if (Input.GetMouseButton(0))
         {
             isHolding = true;
