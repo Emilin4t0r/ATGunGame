@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
     public int kills = 0;
     public bool gameLost;
     public Animator camAnim, gameAnim, faderAnim;
-    public Texture2D cursor, cursorHit;
+    public Texture2D cursor, cursorGrab;
     public GameObject fader;
     public GameObject explosion;
     public GameObject mainCam;
@@ -29,6 +29,15 @@ public class GameManager : MonoBehaviour {
         }
         //Grenade follows camera's x movement so that it shows on death regardless of camera side position
         transform.position = new Vector3(mainCam.transform.position.x, 0, 0);
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Cursor.SetCursor(cursorGrab, new Vector2(250, 250), CursorMode.Auto);
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            Cursor.SetCursor(cursor, new Vector2(250, 250), CursorMode.Auto);
+        }
     }
 
     public IEnumerator LoseGame() {
@@ -60,15 +69,14 @@ public class GameManager : MonoBehaviour {
     {
         StartCoroutine(ShowHitMark(hitSound));
     }
+
     IEnumerator ShowHitMark(bool hitSound)
-    {
-        Cursor.SetCursor(cursorHit, new Vector2(20, 20), CursorMode.Auto);
+    {        
         yield return new WaitForSeconds(0.1f);
         if (!hitSound)
         {
             //AudioFW.PlayRandomPitch("HitMarker");
         }
         yield return new WaitForSeconds(0.1f);
-        Cursor.SetCursor(cursor, new Vector2(20, 20), CursorMode.Auto);
     }
 }

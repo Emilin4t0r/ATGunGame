@@ -52339,8 +52339,8 @@ MonoBehaviour:
   camAnim: {fileID: 713994845}
   gameAnim: {fileID: 1529304022}
   faderAnim: {fileID: 1172130749}
-  cursor: {fileID: 2800000, guid: 3a751c2bbdfa0334084b559e00614c0f, type: 3}
-  cursorHit: {fileID: 2800000, guid: 0b555e4325f11a7479e93b2920b1bef3, type: 3}
+  cursor: {fileID: 2800000, guid: 0f3593c1dcefc2441b3cee4f48109da0, type: 3}
+  cursorGrab: {fileID: 2800000, guid: a48069fdbbd8e9b40af44ed61564640a, type: 3}
   fader: {fileID: 1172130747}
   explosion: {fileID: 100002, guid: 6890a03af913b874092fbb1e8337747d, type: 3}
   mainCam: {fileID: 713994844}
