@@ -6,6 +6,9 @@ public class GunOperating : MonoBehaviour
 {
     public static GunOperating instance;
 
+    public GameObject shotPrefab;
+    public float shootForce;
+    [Space(10)]
     public GameObject breechBlockHandle;
     public GameObject breechBlock;
     public GameObject insertableShell;
@@ -16,6 +19,7 @@ public class GunOperating : MonoBehaviour
     public float breechBlockHandleRot = 175;
     public float insertableShellDistance = -0.7f;
     public bool gunLoadedAndAiming = false;
+    bool shotFired = false;
 
     private void Awake()
     {
@@ -37,25 +41,42 @@ public class GunOperating : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {                
-                Shoot();                
+                Shoot();
+            }
+            if (shotFired)
+            {
+                if (Input.GetKeyUp(KeyCode.Mouse0))
+                {
+                    gunLoadedAndAiming = false;
+                    shotFired = false;
+                }
             }
         }
     }
 
     void Shoot()
-    {
-        gunLoadedAndAiming = false;
-        StartCoroutine(NextViewWaiter());
+    {                
         CameraShaker.Instance.ShakeOnce(10, 15, 0, 1.5f);
         Sounds.Spawn(transform.position, transform, SoundLibrary.GetClip("atGunFire"), 0, true, 1);
         var mf = Instantiate(muzzleFlash, muzzle.transform.position, muzzle.transform.rotation, null);
-        barrelAnim.SetTrigger("Fire");
         Destroy(mf, 5);
+        barrelAnim.SetTrigger("Fire");        
+        Cursor.lockState = CursorLockMode.None;
+
+        var shot = Instantiate(shotPrefab, muzzle.transform.position, muzzle.transform.rotation, null);
+        shot.GetComponent<Rigidbody>().AddForce(shot.transform.forward * shootForce, ForceMode.Impulse);
+        Destroy(shot, 3f);
+        StartCoroutine(NextViewWaiter());
+        shotFired = true;
     }
 
     IEnumerator NextViewWaiter()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
+        while (Input.GetKey(KeyCode.Mouse0))
+        {
+            yield return null;
+        }
         PlayerLookPoints.instance.NextView();
     }
 

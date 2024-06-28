@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerLookPoints : MonoBehaviour {
+public class PlayerLookPoints : MonoBehaviour
+{
 
     public static PlayerLookPoints instance;
 
@@ -13,6 +14,7 @@ public class PlayerLookPoints : MonoBehaviour {
     float rotationSpeed = 250f;
     float moveSpeed = 5f;
     public int currentView;
+    public bool movementInProgress;
 
     private void Awake()
     {
@@ -35,7 +37,7 @@ public class PlayerLookPoints : MonoBehaviour {
     }
 
     void MoveToView(string pos, float m, float r)
-    {                
+    {
         switch (pos)
         {
             case "Gun":
@@ -82,14 +84,19 @@ public class PlayerLookPoints : MonoBehaviour {
                 MoveToView("Breech", 4.5f, 375);
                 break;
         }
+        movementInProgress = true;
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         if (angleDiff > 1 || posDiff > 0.025f)
         {
             RotateToTarget();
-            MoveToTarget();
-        }        
+            MoveToTarget();            
+        } else
+        {
+            if (movementInProgress == true) movementInProgress = false;
+        }
     }
 
     void RotateToTarget()

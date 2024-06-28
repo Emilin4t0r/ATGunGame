@@ -4,6 +4,7 @@ using System.Collections;
 public class InsertableShell : MonoBehaviour
 {
     bool isHolding = false;
+    bool pushingStarted = false;
     public float sensitivity = 2.5f;
     public float min, max;
     public float finishedThreshold = 0.01f;
@@ -25,12 +26,12 @@ public class InsertableShell : MonoBehaviour
             float y = Input.GetAxis("Mouse Y") * sensitivity;
             value += y;
             value = Mathf.Clamp(value, min, max);
-            print(value);
             if (value >= max - finishedThreshold)
             {
                 // Op finished!
                 value = max;
                 isHolding = false;
+                pushingStarted = false;
                 Cursor.lockState = CursorLockMode.None;
                 Sounds.Spawn(transform.position, transform, SoundLibrary.GetClip("shellLoadFull"));
 
@@ -55,6 +56,7 @@ public class InsertableShell : MonoBehaviour
                 go.SetShellType(-1);
                 go.insertableShellDistance = min;
                 go.gunLoadedAndAiming = true;
+                Cursor.lockState = CursorLockMode.Locked;
                 plp.NextView();
             }
             yield return null;
@@ -68,8 +70,12 @@ public class InsertableShell : MonoBehaviour
         Sounds.Spawn(transform.position, transform, SoundLibrary.GetClip("shellLoadHalf"));
         if (Input.GetMouseButton(0))
         {
+            if (!pushingStarted)
+            {
+                value = min;
+                pushingStarted = true;
+            }
             isHolding = true;
-            value = min;
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
