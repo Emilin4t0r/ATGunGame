@@ -28,7 +28,6 @@ public class BreechHandle : MonoBehaviour
             float y = Input.GetAxis("Mouse Y") * sensitivity;
             value += y;
             value = Mathf.Clamp(value, min, max);
-            print(value);
             if (value <= min + finishedThreshold)
             {
                 // Op finished!

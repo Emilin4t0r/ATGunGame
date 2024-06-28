@@ -32,7 +32,6 @@ public class InsertableShell : MonoBehaviour
                 value = max;
                 isHolding = false;
                 pushingStarted = false;
-                Cursor.lockState = CursorLockMode.None;
                 Sounds.Spawn(transform.position, transform, SoundLibrary.GetClip("shellLoadFull"));
 
                 //Animate breech block closing

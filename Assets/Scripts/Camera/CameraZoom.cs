@@ -7,25 +7,33 @@ public class CameraZoom : MonoBehaviour
     Camera cam;
     float fovOnLoad;
     public float zoomFov;
+    GunOperating go;
+
     private void Start()
     {
         cam = gameObject.GetComponent<Camera>();
         fovOnLoad = cam.fieldOfView;
+        go = GunOperating.instance;
     }
     void Update()
     {
-       if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            ToggleZoom(true);
+            ToggleScope(true);
         }
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
-            ToggleZoom(false);
+            ToggleScope(false);
         }
     }
 
-    void ToggleZoom(bool isZooming)
+    void ToggleScope(bool isZooming)
     {
+        if (!go.gunLoadedAndAiming)
+            return;
+
+        // Change camera position to scope (make a parent obj)
+        // Set scope image active for camera's canvas
         if (isZooming)
             cam.fieldOfView = zoomFov;
         else

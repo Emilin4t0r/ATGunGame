@@ -15,11 +15,14 @@ public class GunOperating : MonoBehaviour
     public GameObject heShell, apShell;
     public GameObject muzzle, muzzleFlash;
     public Animator barrelAnim;
+    public int loadedShotType;
 
     public float breechBlockHandleRot = 175;
     public float insertableShellDistance = -0.7f;
     public bool gunLoadedAndAiming = false;
     bool shotFired = false;
+
+    Rigidbody srb;
 
     private void Awake()
     {
@@ -52,21 +55,34 @@ public class GunOperating : MonoBehaviour
                 }
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            if (Time.timeScale == 1f)
+                Time.timeScale = 0.1f;
+            else
+                Time.timeScale = 1f;
+        }
     }
 
     void Shoot()
     {                
-        CameraShaker.Instance.ShakeOnce(10, 15, 0, 1.5f);
+        CameraShaker.Instance.ShakeOnce(20, 15, 0, 1f);
         Sounds.Spawn(transform.position, transform, SoundLibrary.GetClip("atGunFire"), 0, true, 1);
         var mf = Instantiate(muzzleFlash, muzzle.transform.position, muzzle.transform.rotation, null);
         Destroy(mf, 5);
         barrelAnim.SetTrigger("Fire");        
-        Cursor.lockState = CursorLockMode.None;
 
         var shot = Instantiate(shotPrefab, muzzle.transform.position, muzzle.transform.rotation, null);
-        shot.GetComponent<Rigidbody>().AddForce(shot.transform.forward * shootForce, ForceMode.Impulse);
-        Destroy(shot, 3f);
+        Rigidbody shotRb = shot.GetComponent<Rigidbody>();
+        shotRb.AddForce(shot.transform.forward * shootForce, ForceMode.Impulse);
+        Destroy(shot, 10f);
         StartCoroutine(NextViewWaiter());
+        srb = shotRb;
+
+        // Setting shot type (0 = HE, 1 = AP)        
+        shot.GetComponent<Shot>().shotType = loadedShotType;
+
         shotFired = true;
     }
 
@@ -77,6 +93,7 @@ public class GunOperating : MonoBehaviour
         {
             yield return null;
         }
+        Cursor.lockState = CursorLockMode.None;
         PlayerLookPoints.instance.NextView();
     }
 
@@ -104,6 +121,6 @@ public class GunOperating : MonoBehaviour
         {
             heShell.SetActive(false);
             apShell.SetActive(false);
-        }
+        }        
     }
 }
