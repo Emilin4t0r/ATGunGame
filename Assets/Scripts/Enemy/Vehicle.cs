@@ -47,8 +47,8 @@ public class Vehicle : MonoBehaviour {
                     gm.CallShowHitMark(false);
                 }
             }
-            GameObject deadTruck = Instantiate(vehicleDeath, transform.position, transform.rotation);
-            Destroy(deadTruck, 5f);
+            GameObject deadVeh = Instantiate(vehicleDeath, transform.position, transform.rotation);
+            Destroy(deadVeh, 8f);
             //AudioFW.Play("TruckDie");
         }
 

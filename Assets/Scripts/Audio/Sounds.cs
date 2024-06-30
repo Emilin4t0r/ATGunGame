@@ -42,7 +42,7 @@ public class Sounds : MonoBehaviour
         var sound = Instantiate(staticSoundPrefab, pos, parent.rotation, parent);
         var aSource = sound.GetComponent<AudioSource>();
         if (randomPitch)
-            aSource.pitch = Random.Range(0.9f, 1.1f);
+            aSource.pitch = Random.Range(0.95f, 1.05f);
         aSource.spatialBlend = spatialBlend;
         aSource.clip = clip;
         aSource.volume = volume;

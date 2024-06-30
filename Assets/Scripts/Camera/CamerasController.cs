@@ -23,8 +23,13 @@ public class CamerasController : MonoBehaviour
     {
         if (activeCam == scopeCam.name)
         {
-            scopeCam.GetComponent<Camera>().fieldOfView -= Input.mouseScrollDelta.y;
-            Mathf.Clamp(scopeCam.GetComponent<Camera>().fieldOfView, 10, 23);
+            float fov = Input.mouseScrollDelta.y;
+            Camera camS = scopeCam.GetComponent<Camera>();
+            camS.fieldOfView -= fov;
+            if (camS.fieldOfView < 10)
+                camS.fieldOfView = 10;
+            else if (camS.fieldOfView > 23)
+                camS.fieldOfView = 23;
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {

@@ -58,7 +58,7 @@ public class EnemyManager : MonoBehaviour {
         }
     }
 
-    void GenerateWave(int enemies, int trucks) {
+    void GenerateWave(int enemies, int vehicles) {
         for (int i = 0; i < enemies; ++i) {
             int randSpawn = Random.Range(0, spawnPoints.Length);
             int randGoal = Random.Range(0, goalPoints.Length);
@@ -71,8 +71,8 @@ public class EnemyManager : MonoBehaviour {
             enemiesLeft = enemies;
             lastAmt = enemies;
         }
-        if (trucks > 0) {
-            for (int i = 0; i < trucks; i++) {
+        if (vehicles > 0) {
+            for (int i = 0; i < vehicles; i++) {
                 int randSpawn = Random.Range(0, spawnPoints.Length);
                 int randGoal = Random.Range(0, goalPoints.Length);
                 GameObject newTruck = Instantiate(truck, spawnPoints[randSpawn].transform.position, Quaternion.identity);
@@ -82,10 +82,10 @@ public class EnemyManager : MonoBehaviour {
                 lastAmt++;
             }
         }
-        if (trucks == 0) {
-            //AudioFW.Play("NewWave");
+        if (vehicles == 0) {
+            Sounds.Spawn(transform.position, transform, SoundLibrary.GetClip("wave_start"));
         } else {
-            //AudioFW.Play("NewWaveTruck");
+            Sounds.Spawn(transform.position, transform, SoundLibrary.GetClip("wave_start_vehicle"));
         }
     }
 }

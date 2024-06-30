@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class VehicleDeath : MonoBehaviour {
 
-    public GameObject[] parts = new GameObject[6];
+    public GameObject[] parts;
+    public float explosionForce;
+
     private void Start() {
       foreach (GameObject part in parts) {
             Vector3 randomDir = new Vector3(Random.Range(0,360), Random.Range(0, 360), Random.Range(0, 360));
-            part.GetComponent<Rigidbody>().AddForce(randomDir * Random.Range(2f, 3f), ForceMode.Impulse);
+            part.GetComponent<Rigidbody>().AddForce(randomDir * Random.Range(explosionForce / 2, explosionForce), ForceMode.Impulse);
+            part.GetComponent<Rigidbody>().AddTorque(randomDir * Random.Range(explosionForce / 2, explosionForce), ForceMode.Impulse);
         }  
     }
 }

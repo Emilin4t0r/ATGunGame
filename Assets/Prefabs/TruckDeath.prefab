@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 3796903928637798804}
   - {fileID: 3796903928637798806}
   - {fileID: 3796903928637798808}
+  explosionForce: 6
 --- !u!1 &3796903928637798784
 GameObject:
   m_ObjectHideFlags: 0

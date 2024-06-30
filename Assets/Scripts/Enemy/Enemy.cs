@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour {
         float dist = Vector3.Distance(transform.position, new Vector3(0, 30, 0));
         if (rand == 1 && dist < 600) {
             GameObject flash = Instantiate(mzlFlash, barrelEnd.transform.position, Quaternion.identity, barrelEnd.transform);
-            //AudioFW.PlayRandomPitch("EnemyRifle");
+            Sounds.Spawn(transform.position, transform, SoundLibrary.GetClip("enemyRifle"));
             Destroy(flash, 0.2f);
         }
     }
