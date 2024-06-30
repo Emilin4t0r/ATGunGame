@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour {
             float randScale = Random.Range(0.25f, 1.5f);
             impact.transform.localScale = (new Vector3(randScale, randScale, randScale));
             Destroy(impact, 1f);        
-        } else if (collision.transform.CompareTag("Truck") || collision.transform.CompareTag("Metal")) {
+        } else if (collision.transform.CompareTag("Vehicle") || collision.transform.CompareTag("Metal")) {
             //spark hit effect
             GameObject mImpact = Instantiate(metalImpact, transform.position, metalImpact.transform.rotation);
             float randScale = Random.Range(1f, 3f);

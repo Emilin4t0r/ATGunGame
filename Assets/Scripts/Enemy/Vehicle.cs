@@ -6,7 +6,7 @@ using EZCameraShake;
 
 public class Vehicle : MonoBehaviour {
     public int lives;
-    public GameObject truckDeath;
+    public GameObject vehicleDeath;
     NavMeshAgent agent;
     bool damaged;
     public GameObject flames;
@@ -18,11 +18,11 @@ public class Vehicle : MonoBehaviour {
         agent = transform.GetComponent<NavMeshAgent>();
         agent.speed = startSpeed;
         gm = GameManager.instance;
-        lives = 25;
+        lives = 2;
     }
 
     private void FixedUpdate() {
-        if (lives < 15 && !damaged) {
+        if (lives < 2 && !damaged) {
             damaged = true;
             agent.speed = damagedSpeed;
             //AudioFW.Play("TruckDamaged");
@@ -47,14 +47,18 @@ public class Vehicle : MonoBehaviour {
                     gm.CallShowHitMark(false);
                 }
             }
-            GameObject deadTruck = Instantiate(truckDeath, transform.position, transform.rotation);
+            GameObject deadTruck = Instantiate(vehicleDeath, transform.position, transform.rotation);
             Destroy(deadTruck, 5f);
-            CameraShaker.GetInstance("Main Camera").ShakeOnce(7.5f, 5f, 0.0f, 2.5f);
             //AudioFW.Play("TruckDie");
         }
 
         if (damaged) {
             flames.SetActive(true);
         }
+    }
+
+    public void TakeDamage(int dmg)
+    {
+        lives -= dmg;
     }
 }

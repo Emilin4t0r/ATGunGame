@@ -5215,7 +5215,7 @@ MonoBehaviour:
   effectiveArea: 35
   visuals: {fileID: 1287852483815862214}
   expGrnd: {fileID: 9198564974475354276, guid: 813d6248a89c58c4aa66a390900d3012, type: 3}
-  expTank: {fileID: 0}
+  expTank: {fileID: 1491811196751865843, guid: f6b54c643c6b73744805ff0f0e5b1c97, type: 3}
 --- !u!136 &997077374876590350
 CapsuleCollider:
   m_ObjectHideFlags: 0

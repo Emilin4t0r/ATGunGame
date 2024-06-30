@@ -17,7 +17,11 @@ public class Enemy : MonoBehaviour {
     private void FixedUpdate() {
         if (dying) {
             col.enabled = false;
-            anim.SetTrigger("Die");
+            int r = Random.Range(0, 2);
+            if (r == 0)
+                anim.SetTrigger("Die");
+            else
+                anim.SetTrigger("Die2");
         }
         int rand = Random.Range(1, 300);
         float dist = Vector3.Distance(transform.position, new Vector3(0, 30, 0));
@@ -35,7 +39,8 @@ public class Enemy : MonoBehaviour {
 
     IEnumerator DeathTimeRandomizer()
     {
-        yield return new WaitForSeconds(Random.Range(0, 0.15f));
+        yield return new WaitForSeconds(Random.Range(0, 0.2f));
+        print("TOD: " + Time.time);
         dying = true;
         transform.localEulerAngles += new Vector3(0, Random.Range(0, 360), 0);
         EnemyManager.enemiesLeft--;

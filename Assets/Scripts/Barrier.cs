@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Barrier : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Enemy") || other.CompareTag("Truck")) {
+        if (other.CompareTag("Enemy") || other.CompareTag("Vehicle")) {
             Destroy(other.gameObject);
             EnemyManager.enemiesLeft--;
             GameManager.instance.lives--;

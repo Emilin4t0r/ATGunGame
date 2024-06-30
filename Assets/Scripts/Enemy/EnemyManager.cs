@@ -22,6 +22,15 @@ public class EnemyManager : MonoBehaviour {
         clipBoard.ChangeWave(currentWave.ToString());
         nextWaveTimer = 0;
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            GenerateWave(0, 1);
+        }
+    }
+
     void FixedUpdate() {
         if (enemiesLeft == 0 && !GameManager.instance.gameLost) {
             if (nextWaveTimer > 5) {

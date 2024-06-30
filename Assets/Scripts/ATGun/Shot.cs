@@ -24,43 +24,50 @@ public class Shot : MonoBehaviour
     {
         print(shotType + " " + collision.gameObject.tag);
         Vector3 rot = collision.GetContact(0).normal;
-        if (collision.gameObject.CompareTag("Metal"))
+        string tag = collision.gameObject.tag;
+        if (shotType == 0)
         {
-            Tank tank = collision.gameObject.GetComponent<Tank>();
-            if (shotType == 1)
+            if (tag == "Vehicle")
             {
-                tank.TakeDamage(2);
-            } else if (shotType == 0)
-            {
-                tank.TakeDamage(1);
+                Vehicle v = collision.gameObject.GetComponent<Vehicle>();
+                v.TakeDamage(1);
             }
-            Detonate(shotType, rot);
-        }
-        else
+            Detonate(rot);
+        } else if (shotType == 1)
         {
-            if (shotType == 0)
+            if (tag == "Vehicle")
             {
-                Detonate(shotType, rot);
+                Vehicle v = collision.gameObject.GetComponent<Vehicle>();
+                v.TakeDamage(2);
+                Detonate(rot);
             }
-        }
+        }        
     }
 
-    void Detonate(int type, Vector3 rot)
-    {
-        if (type == 0)
-            EZCameraShake.CameraShaker.GetInstance(CamerasController.instance.activeCam).ShakeOnce(10, 10, 0, 0.7f);
-        GameObject exp = type == 0 ? expGrnd : expTank;
-        var ex = Instantiate(exp, transform.position, Quaternion.identity, null);
+    void Detonate(Vector3 rot)
+    {        
+        GameObject exObj = shotType == 0 ? expGrnd : expTank;
+        var ex = Instantiate(exObj, transform.position, Quaternion.identity, null);
         ex.transform.eulerAngles = rot;
         visuals.transform.parent = null;
 
-        Collider[] cols = Physics.OverlapSphere(transform.position, effectiveArea);
-        foreach(var c in cols)
+        if (shotType == 0)
         {
-            if (c.gameObject.CompareTag("Enemy"))
-                c.GetComponent<Enemy>().Die();
+            EZCameraShake.CameraShaker.GetInstance(CamerasController.instance.activeCam).ShakeOnce(10, 10, 0, 0.7f);
+            Sounds.Spawn(transform.position, ex.transform, SoundLibrary.GetClip("shot_expl_grnd"));
+            Collider[] cols = Physics.OverlapSphere(transform.position, effectiveArea);
+            foreach (var c in cols)
+            {
+                if (c.gameObject.CompareTag("Enemy"))
+                    c.GetComponent<Enemy>().Die();
+            }
         }
-
+        else if (shotType == 1)
+        {
+            EZCameraShake.CameraShaker.GetInstance(CamerasController.instance.activeCam).ShakeOnce(6, 10, 0, 0.35f);
+            Sounds.Spawn(transform.position, ex.transform, SoundLibrary.GetClip("shot_expl_tank"));
+        }
+        
         Destroy(visuals.gameObject, 0.2f);
         Destroy(ex.gameObject, 3);
         Destroy(transform.gameObject);

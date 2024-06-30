@@ -24427,7 +24427,7 @@ GameObject:
   - component: {fileID: 7050556612259981095}
   m_Layer: 12
   m_Name: Truck
-  m_TagString: Truck
+  m_TagString: Vehicle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24504,8 +24504,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc03f0ea4d6d724cbfe36ddd905d976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 0
-  truckDeath: {fileID: 1317770551036257960, guid: b526072e85a60ec4a8cf0e2d4110b54c, type: 3}
+  lives: 2
+  vehicleDeath: {fileID: 1317770551036257960, guid: b526072e85a60ec4a8cf0e2d4110b54c, type: 3}
   flames: {fileID: 4200678383545793979}
   startSpeed: 12
   damagedSpeed: 4

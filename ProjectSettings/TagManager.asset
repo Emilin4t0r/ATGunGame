@@ -6,9 +6,10 @@ TagManager:
   tags:
   - FxTemporaire
   - Enemy
-  - Truck
   - Terrain
   - Metal
+  - Vehicle
+  - Truck
   layers:
   - Default
   - TransparentFX
