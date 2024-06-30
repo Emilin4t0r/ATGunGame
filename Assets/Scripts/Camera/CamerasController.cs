@@ -21,6 +21,11 @@ public class CamerasController : MonoBehaviour
     }
     void Update()
     {
+        if (activeCam == scopeCam.name)
+        {
+            scopeCam.GetComponent<Camera>().fieldOfView -= Input.mouseScrollDelta.y;
+            Mathf.Clamp(scopeCam.GetComponent<Camera>().fieldOfView, 10, 23);
+        }
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             if (!go.gunLoadedAndAiming)
@@ -34,13 +39,14 @@ public class CamerasController : MonoBehaviour
     }
 
     public void ToggleScope(bool scopedIn)
-    {        
+    {
         if (scopedIn)
         {
             mainCam.SetActive(false);
             scopeCam.SetActive(true);
             activeCam = scopeCam.name;
-        } else
+        }
+        else
         {
             scopeCam.SetActive(false);
             mainCam.SetActive(true);

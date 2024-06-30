@@ -40,12 +40,13 @@ public class Enemy : MonoBehaviour {
     IEnumerator DeathTimeRandomizer()
     {
         yield return new WaitForSeconds(Random.Range(0, 0.2f));
+        anim.speed = Random.Range(0.4f, 0.8f);
         print("TOD: " + Time.time);
         dying = true;
         transform.localEulerAngles += new Vector3(0, Random.Range(0, 360), 0);
         EnemyManager.enemiesLeft--;
         GameManager.instance.kills++;
         Clipboard.instance.UpdateKills();
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject, 2f);
     }
 }
