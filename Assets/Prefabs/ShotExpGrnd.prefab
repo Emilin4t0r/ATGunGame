@@ -45,7 +45,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 0.84313726, b: 0.39215687, a: 1}
   m_Intensity: 12.4
-  m_Range: 2
+  m_Range: 15
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -110,7 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d332ab3dbfaaf40bdd9745ff0b19f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 0.05
+  time: 0.1
+  flashOnce: 1
 --- !u!1 &2326667967947240659
 GameObject:
   m_ObjectHideFlags: 0

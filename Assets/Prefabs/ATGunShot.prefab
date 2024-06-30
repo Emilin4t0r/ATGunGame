@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1379812522603404980}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 8054979899384555371}
   - component: {fileID: 7462211399484425613}
   - component: {fileID: 2162042809119716334}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Smoke Trail (Particle)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4878,7 +4878,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6360085066312300506}
   - component: {fileID: 4284007801686478470}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4911,8 +4911,8 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
-  m_Range: 10
+  m_Intensity: 1.5
+  m_Range: 25
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -4976,7 +4976,7 @@ GameObject:
   - component: {fileID: 6020159388251509282}
   - component: {fileID: 654867695729352937}
   - component: {fileID: 1615806888589318368}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5062,7 +5062,7 @@ GameObject:
   - component: {fileID: 5222089689932638173}
   - component: {fileID: 5601076570902960072}
   - component: {fileID: 2642614129928449035}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Tracer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5149,7 +5149,7 @@ GameObject:
   - component: {fileID: 272109399848834675}
   - component: {fileID: 4116313271748559301}
   - component: {fileID: 997077374876590350}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ATGunShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5212,7 +5212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotType: 0
-  smoke: {fileID: 1913283336967625333}
+  effectiveArea: 35
   visuals: {fileID: 1287852483815862214}
   expGrnd: {fileID: 9198564974475354276, guid: 813d6248a89c58c4aa66a390900d3012, type: 3}
   expTank: {fileID: 0}
@@ -5235,7 +5235,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.75
+  m_Radius: 0.45
   m_Height: 3
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: -0.5}

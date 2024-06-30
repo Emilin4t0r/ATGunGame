@@ -6,3 +6,10 @@ NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 184465
+  packageName: WW2 Armed Forces Demo
+  packageVersion: 2.1.0
+  assetPath: Assets/WW2 Armed Forces Demo/Materials/Track/Track.mat
+  uploadId: 652993

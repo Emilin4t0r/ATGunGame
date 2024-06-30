@@ -11,7 +11,7 @@ using System.Collections;
 public class WFX_LightFlicker : MonoBehaviour
 {
 	public float time = 0.05f;
-	
+	public bool flashOnce;
 	private float timer;
 	
 	void Start ()
@@ -22,17 +22,25 @@ public class WFX_LightFlicker : MonoBehaviour
 	
 	IEnumerator Flicker()
 	{
-		while(true)
+		if (flashOnce)
 		{
-			GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
-			
-			do
+			yield return new WaitForSeconds(time);
+			GetComponent<Light>().enabled = false;
+		}
+		else
+		{
+			while (true)
 			{
-				timer -= Time.deltaTime;
-				yield return null;
+				GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
+
+				do
+				{
+					timer -= Time.deltaTime;
+					yield return null;
+				}
+				while (timer > 0);
+				timer = time;
 			}
-			while(timer > 0);
-			timer = time;
 		}
 	}
 }

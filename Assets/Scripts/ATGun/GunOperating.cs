@@ -67,7 +67,7 @@ public class GunOperating : MonoBehaviour
 
     void Shoot()
     {                
-        CameraShaker.Instance.ShakeOnce(20, 15, 0, 1f);
+        CameraShaker.GetInstance(CamerasController.instance.activeCam).ShakeOnce(20, 15, 0, 1f);
         Sounds.Spawn(transform.position, transform, SoundLibrary.GetClip("atGunFire"), 0, true, 1);
         var mf = Instantiate(muzzleFlash, muzzle.transform.position, muzzle.transform.rotation, null);
         Destroy(mf, 5);
@@ -94,6 +94,7 @@ public class GunOperating : MonoBehaviour
             yield return null;
         }
         Cursor.lockState = CursorLockMode.None;
+        CamerasController.instance.ToggleScope(false);
         PlayerLookPoints.instance.NextView();
     }
 

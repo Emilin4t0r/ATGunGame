@@ -18,6 +18,10 @@ public class Clipboard : MonoBehaviour {
     public void ChangeWave(string newText) {
         waveText.text = "Wave: " + newText;
     }
+    public void UpdateKills()
+    {
+        killsText.text = "Kills: " + GameManager.instance.kills;
+    }
     public void ChangeKills(string newText) {
         killsText.text = "Kills: " + newText;
     }

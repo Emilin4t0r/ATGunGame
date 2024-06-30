@@ -90,3 +90,10 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 184465
+  packageName: WW2 Armed Forces Demo
+  packageVersion: 2.1.0
+  assetPath: Assets/WW2 Armed Forces Demo/Textures/Panzer_II_F/Panzer_II_F_AO.png
+  uploadId: 652993
