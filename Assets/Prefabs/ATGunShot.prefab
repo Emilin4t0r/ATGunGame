@@ -5181,7 +5181,7 @@ Rigidbody:
   m_GameObject: {fileID: 5481907589744349703}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.05
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -5212,8 +5212,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotType: 0
-  effectiveArea: 100
-  deadliness: 55
+  effectiveArea: 75
+  deadliness: 60
   visuals: {fileID: 1287852483815862214}
   expGrnd: {fileID: 9198564974475354276, guid: 813d6248a89c58c4aa66a390900d3012, type: 3}
   expTank: {fileID: 1491811196751865843, guid: f6b54c643c6b73744805ff0f0e5b1c97, type: 3}

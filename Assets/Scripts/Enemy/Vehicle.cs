@@ -5,7 +5,8 @@ using UnityEngine.AI;
 using EZCameraShake;
 
 public class Vehicle : MonoBehaviour {
-    public int lives;
+    public float startHealth;
+    float health;
     public GameObject vehicleDeath;
     NavMeshAgent agent;
     bool damaged;
@@ -18,16 +19,16 @@ public class Vehicle : MonoBehaviour {
         agent = transform.GetComponent<NavMeshAgent>();
         agent.speed = startSpeed;
         gm = GameManager.instance;
-        lives = 2;
+        health = startHealth;
     }
 
     private void FixedUpdate() {
-        if (lives < 2 && !damaged) {
+        if (health < startHealth / 2 && !damaged) {
             damaged = true;
             agent.speed = damagedSpeed;
             //AudioFW.Play("TruckDamaged");
         }
-        if (lives < 1) {
+        if (health <= 0) {
             EnemyManager.enemiesLeft--;
 
             gm.kills++;
@@ -47,7 +48,7 @@ public class Vehicle : MonoBehaviour {
                     gm.CallShowHitMark(false);
                 }
             }
-            GameObject deadVeh = Instantiate(vehicleDeath, transform.position, transform.rotation);
+            GameObject deadVeh = Instantiate(vehicleDeath, transform.position, transform.GetChild(0).rotation);
             Destroy(deadVeh, 8f);
             //AudioFW.Play("TruckDie");
         }
@@ -57,8 +58,8 @@ public class Vehicle : MonoBehaviour {
         }
     }
 
-    public void TakeDamage(int dmg)
+    public void TakeDamage(float dmg)
     {
-        lives -= dmg;
+        health -= dmg;
     }
 }

@@ -10,6 +10,7 @@ public class Shot : MonoBehaviour
     public GameObject visuals;
     public GameObject expGrnd, expTank;
     Rigidbody rb;
+    float vel;
 
     private void Start()
     {
@@ -20,11 +21,19 @@ public class Shot : MonoBehaviour
     {
         Quaternion targetRotation = Quaternion.LookRotation(rb.linearVelocity, Vector3.forward);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.fixedDeltaTime * 10);
+        
+        if (shotType == 1)
+        {
+            vel = rb.linearVelocity.magnitude;
+            if (vel < 50 && vel != 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        print(shotType + " " + collision.gameObject.tag);
         Vector3 rot = collision.GetContact(0).normal;
         string tag = collision.gameObject.tag;
         if (shotType == 0)
@@ -32,7 +41,7 @@ public class Shot : MonoBehaviour
             if (tag == "Vehicle")
             {
                 Vehicle v = collision.gameObject.GetComponent<Vehicle>();
-                v.TakeDamage(1);
+                v.TakeDamage(50);
             }
             Detonate(rot);
         }
@@ -41,7 +50,12 @@ public class Shot : MonoBehaviour
             if (tag == "Vehicle")
             {
                 Vehicle v = collision.gameObject.GetComponent<Vehicle>();
-                v.TakeDamage(2);
+                v.TakeDamage(vel);
+                Detonate(rot);
+            }
+            if (tag == "Enemy")
+            {
+                collision.gameObject.GetComponent<Enemy>().Die();
                 Detonate(rot);
             }
         }

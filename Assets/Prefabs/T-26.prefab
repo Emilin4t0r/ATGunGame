@@ -1379,7 +1379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc03f0ea4d6d724cbfe36ddd905d976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 2
+  startHealth: 100
   vehicleDeath: {fileID: 9105048214082500209, guid: 08ea6cc1a751b9f40bf941e6fb21f122, type: 3}
   flames: {fileID: 8210094811054307413}
   startSpeed: 10
@@ -1420,7 +1420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mgEffect: {fileID: 2067165118572657495}
   minBurstLength: 0.25
-  maxBurstLength: 2
+  maxBurstLength: 1
 --- !u!1 &6017374195228794923
 GameObject:
   m_ObjectHideFlags: 0

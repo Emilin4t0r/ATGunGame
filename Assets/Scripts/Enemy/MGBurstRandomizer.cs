@@ -6,6 +6,7 @@ public class MGBurstRandomizer : MonoBehaviour
     public float minBurstLength, maxBurstLength;
     float timeToEndBurst, timeToStartBurst;
     bool isFiring;
+    GameObject mgSound;
 
     private void Start()
     {
@@ -36,6 +37,7 @@ public class MGBurstRandomizer : MonoBehaviour
         timeToEndBurst = Time.time + rand;
         mgEffect.SetActive(true);
         isFiring = true;
+        mgSound = Sounds.SpawnLoop(transform.position, transform, SoundLibrary.GetClip("tank_mg2"));
     }
 
     void EndBurst()
@@ -44,5 +46,7 @@ public class MGBurstRandomizer : MonoBehaviour
         timeToStartBurst = Time.time + rand;
         mgEffect.SetActive(false);
         isFiring = false;
+        Sounds.EndLoop(mgSound);
+        Sounds.Spawn(transform.position, transform, SoundLibrary.GetClip("tank_mg_tail"));
     }
 }

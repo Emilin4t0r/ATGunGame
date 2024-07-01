@@ -24504,7 +24504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc03f0ea4d6d724cbfe36ddd905d976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 2
+  startHealth: 50
   vehicleDeath: {fileID: 1317770551036257960, guid: b526072e85a60ec4a8cf0e2d4110b54c, type: 3}
   flames: {fileID: 4200678383545793979}
   startSpeed: 12
