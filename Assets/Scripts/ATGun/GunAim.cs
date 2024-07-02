@@ -29,9 +29,9 @@ public class GunAim : MonoBehaviour
 
         Vector3 xTargetEul = hControl.transform.localEulerAngles;
         xTargetEul.y = x * controlSensitivity;
-        hControl.transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(xTargetEul), Time.fixedDeltaTime);
+        hControl.transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(xTargetEul), Time.fixedDeltaTime * 100);
         Vector3 vTargetEul = vControl.transform.localEulerAngles;
         vTargetEul.y = y * controlSensitivity * 2;
-        vControl.transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(vTargetEul), Time.fixedDeltaTime);
+        vControl.transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(vTargetEul), Time.fixedDeltaTime * 100);
     }
 }

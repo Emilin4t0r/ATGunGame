@@ -32,7 +32,6 @@ public class WFX_LightFlicker : MonoBehaviour
 			while (true)
 			{
 				GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
-
 				do
 				{
 					timer -= Time.deltaTime;

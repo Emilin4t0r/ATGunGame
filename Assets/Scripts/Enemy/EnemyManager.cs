@@ -29,10 +29,11 @@ public class EnemyManager : MonoBehaviour {
         {
             GenerateWave(0, 1);
         }
+        print(enemiesLeft);
     }
 
     void FixedUpdate() {
-        if (enemiesLeft == 0 && !GameManager.instance.gameLost) {
+        if (enemiesLeft <= 0 && !GameManager.instance.gameLost) {
             if (nextWaveTimer > 5) {
                 int nextAmt = lastAmt + Random.Range(2, 5);
                 currentWave++;

@@ -23,7 +23,7 @@ public class Vehicle : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (health < startHealth / 2 && !damaged) {
+        if (health <= startHealth / 2 && !damaged) {
             damaged = true;
             agent.speed = damagedSpeed;
             //AudioFW.Play("TruckDamaged");
@@ -40,12 +40,7 @@ public class Vehicle : MonoBehaviour {
                 if (col.gameObject.CompareTag("Enemy"))
                 {
                     Enemy enemy = col.GetComponent<Enemy>();
-                    EnemyManager.enemiesLeft--;
-                    gm.kills++;
-                    Clipboard.instance.ChangeKills(gm.kills.ToString());
-                    Destroy(enemy.gameObject, 0.5f);
-                    enemy.dying = true;
-                    gm.CallShowHitMark(false);
+                    enemy.Die();
                 }
             }
             GameObject deadVeh = Instantiate(vehicleDeath, transform.position, transform.GetChild(0).rotation);
