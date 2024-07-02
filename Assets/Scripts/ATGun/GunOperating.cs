@@ -88,7 +88,7 @@ public class GunOperating : MonoBehaviour
 
     IEnumerator NextViewWaiter()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         while (Input.GetKey(KeyCode.Mouse0))
         {
             yield return null;
