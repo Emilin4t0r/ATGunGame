@@ -154,9 +154,6 @@ public class MaximGun : MonoBehaviour
                     break;  // Exit the loop as we've found a valid target
                 }
             }
-        }
-
-        if (target == null && isFiring)
-            EndBurst();
+        }        
     }
 }

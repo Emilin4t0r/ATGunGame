@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour {
             anim.SetTrigger("Die");
         else
             anim.SetTrigger("Die2");
-        anim.speed = Random.Range(0.4f, 0.8f);
+        anim.speed = Random.Range(0.9f, 1.1f);
         transform.localEulerAngles += new Vector3(0, Random.Range(0, 360), 0);
         EnemyManager.enemiesLeft--;
         GameManager.instance.kills++;
