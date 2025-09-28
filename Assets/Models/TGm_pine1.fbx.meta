@@ -3,7 +3,22 @@ guid: ecb154ee9b7c8af47bc82a55db4fca39
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Needles
+    second: {fileID: 2100000, guid: 29d67c90bda03a842b3f00f87934d5a5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Snow
+    second: {fileID: 2100000, guid: 5c6e49d4040fb3b44a090b02f7f97a04, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Trunk
+    second: {fileID: 2100000, guid: b899bc5e77fd36044b8d994754190c18, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -88,7 +103,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.25
+    globalScale: 25
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

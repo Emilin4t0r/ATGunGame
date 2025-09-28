@@ -29,7 +29,11 @@ public class EnemyManager : MonoBehaviour {
         {
             GenerateWave(0, 1);
         }
-        print(enemiesLeft);
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            GenerateWave(10, 0);
+        }
+        //print(enemiesLeft);
     }
 
     void FixedUpdate() {

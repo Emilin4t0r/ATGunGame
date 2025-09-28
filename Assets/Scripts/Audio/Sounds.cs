@@ -37,7 +37,7 @@ public class Sounds : MonoBehaviour
         }
     }
 
-    public static void Spawn(Vector3 pos, Transform parent, AudioClip clip, float spatialBlend = 0, bool randomPitch = true, float volume = 0.75f)
+    public static GameObject Spawn(Vector3 pos, Transform parent, AudioClip clip, float spatialBlend = 0, bool randomPitch = true, float volume = 0.75f)
     {
         var sound = Instantiate(staticSoundPrefab, pos, parent.rotation, parent);
         var aSource = sound.GetComponent<AudioSource>();
@@ -48,6 +48,7 @@ public class Sounds : MonoBehaviour
         aSource.volume = volume;
         aSource.Play();
         Destroy(sound, 5);
+        return sound;
     }
 
     public static void SpawnSoundWithPitch(Vector3 pos, Transform parent, AudioClip clip, float spatialBlend = 0, float pitch = 1, float volume = 0.75f)
